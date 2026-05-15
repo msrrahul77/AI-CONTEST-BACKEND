@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.GoalRoutes = void 0;
+const express_1 = require("express");
+const goal_controller_1 = require("./goal.controller");
+const authGuard_1 = require("../../middlewares/authGuard");
+const router = (0, express_1.Router)();
+router.get("/", authGuard_1.authGuard, goal_controller_1.GoalController.getGoals);
+router.post("/create", authGuard_1.authGuard, goal_controller_1.GoalController.createGoal);
+router.patch("/add-savings", authGuard_1.authGuard, goal_controller_1.GoalController.addSavings);
+router.get("/:id/ai-advice", authGuard_1.authGuard, goal_controller_1.GoalController.getAiAdvice);
+exports.GoalRoutes = router;
